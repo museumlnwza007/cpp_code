@@ -12,9 +12,10 @@ main(){
 	scanf("%d" , &sjitpisai);
 }
 	
-
-	int calculate(int smain, int smid, int sfinal, int sjitpisai) {
-	int grade (smain + smid + sfinal + sjitpisai);
 	
-	printf("grade");
+	int calculate(int smain, int smid, int sfinal, int sjitpisai) {
+		return(smain + smid + sfinal + sjitpisai);
+}
+	
+	
 }
