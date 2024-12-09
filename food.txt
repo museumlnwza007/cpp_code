@@ -1,9 +1,9 @@
 #include <stdio.h>
-
+#include <string.h>
 struct MenuItem {
     int id;
     char name[20];
-    double price;
+    int price;
 };
 
 void displayMenu(struct MenuItem menu[], int size) {
@@ -14,12 +14,12 @@ void displayMenu(struct MenuItem menu[], int size) {
     }
 }
 
-double calculatePrice(int choice, int quantity, struct MenuItem menu[]) {
+int CalculatePrice(int choice, int quantity, struct MenuItem menu[]) {
     return menu[choice - 1].price * quantity;
 }
 
-double applyVAT(double price) {
-    const double VAT = 0.07;
+int ApplyVAT(int price) {
+     int VAT = 0.07;
     return price * VAT;
 }
 
@@ -33,7 +33,7 @@ int main() {
 		
     };
     int choice, quantity;
-    double totalPrice = 0;
+    int TotalPrice = 0;
     char moreItems;
     
     displayMenu(menu, 4);
@@ -58,18 +58,18 @@ int main() {
         }
         printf("quantity: ");
         scanf("%d", &quantity);
-        totalPrice += calculatePrice(choice, quantity, menu);
+        TotalPrice += CalculatePrice(choice, quantity, menu);
         printf("Would you like to order more? (y to continue): ");
         scanf(" %c", &moreItems);
 
     } while (moreItems == 'y' || moreItems == 'Y');
 
-    double vatAmount = applyVAT(totalPrice);
-    double totalWithVAT = totalPrice + vatAmount;
+    int VATAmount = ApplyVAT(TotalPrice);
+    int totalWithVAT = TotalPrice + VATAmount;
 
     printf("\n---- Order Price ----\n");
-    printf("Pre-Vat Price: $%.2f\n", totalPrice);
-    printf("VAT (7%%): $%.2f\n", vatAmount);
+    printf("Pre-Vat Price: $%.2f\n", TotalPrice);
+    printf("VAT (7%%): $%.2f\n", VATAmount);
     printf("Total price: $%.2f\n", totalWithVAT);
 
     return 0;
